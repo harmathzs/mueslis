@@ -19,10 +19,12 @@ export default class App extends React.Component {
   handleNavEnter = e => this.setState({menuExpanded: true})
   handleNavLeave = e => this.setState({menuExpanded: false})
 
+  handleSelectMenuItem = menuItem => this.setState({menuItemSelected: menuItem})
+
   render() {
     return (
       <div className='page-container'>
-        <LeftSidebar />
+        <LeftSidebar onMenuItemSelected={this.handleSelectMenuItem} />
 
         {this.state.menuItemSelected=='products' && <MueslisPage />}
         {this.state.menuItemSelected=='about' && <AboutPage />}   

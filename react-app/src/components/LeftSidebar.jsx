@@ -11,11 +11,14 @@ export default class LeftSidebar extends React.Component {
   handleNavEnter = e => this.setState({menuExpanded: true})
   handleNavLeave = e => this.setState({menuExpanded: false})
 
+  handleProductsClick = e => this.props.onMenuItemSelected('products')
+  handleAboutClick = e => this.props.onMenuItemSelected('about')
+
     render() {
         return <nav id="navbar" title="Toggle menu width" className={this.state.menuExpanded ? "expanded" : ""}
           onMouseEnter={this.handleNavEnter} onMouseLeave={this.handleNavLeave}
         >
-          <div className="menu-item" tabIndex="0" data-content="products" onClick={e=>this.setState({menuItemSelected: 'products'})}>
+          <div className="menu-item" tabIndex="0" data-content="products" onClick={this.handleProductsClick}>
             <span className="menu-icon">📦</span>
             <span className="menu-text">Products</span>
           </div>
@@ -23,7 +26,7 @@ export default class LeftSidebar extends React.Component {
             <span className="menu-icon">💰</span>
             <span className="menu-text">Prices</span>
           </div>
-          <div className="menu-item" tabIndex="0" data-content="about" onClick={e=>this.setState({menuItemSelected: 'about'})}>
+          <div className="menu-item" tabIndex="0" data-content="about" onClick={this.handleAboutClick}>
             <span className="menu-icon">ℹ️</span>
             <span className="menu-text">About</span>
           </div>
