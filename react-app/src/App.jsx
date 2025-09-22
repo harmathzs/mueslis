@@ -1,8 +1,10 @@
 import React from 'react';
 
 import MueslisPage from './pages/MueslisPage';
+import AboutPage from './pages/AboutPage';
 
 import './App.css';
+
 
 
 export default class App extends React.Component {
@@ -26,7 +28,8 @@ export default class App extends React.Component {
           </div>
         </nav>
 
-          <MueslisPage />     
+          <MueslisPage /> 
+          <AboutPage />    
       </div>
     )
   }
