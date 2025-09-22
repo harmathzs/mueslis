@@ -6,7 +6,9 @@ import './App.css'
 
 export default class App extends React.Component {
   state = {
-    muesliData: null
+    muesliData: {
+      result: []
+    }
   }
 
   render() {
@@ -41,7 +43,13 @@ export default class App extends React.Component {
             <tbody>
               {/*<tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>*/}
               {/*JSON.stringify(this.state.muesliData)*/}
-              {/* TODO - this.state.muesliData.result.map() */}
+              {this.state.muesliData.result.map(muesli=>{
+                return <tr key={muesli.id}>
+                  <td>{muesli.id}</td>
+                  <td>{muesli.name}</td>
+                  <td>{muesli.price}</td>
+                </tr>
+              })}
             </tbody>
           </table>
         </main>        
