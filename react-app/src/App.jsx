@@ -8,13 +8,15 @@ import './App.css';
 
 
 export default class App extends React.Component {
-
+  state = {
+    menuItemSelected: 'products'
+  }
 
   render() {
     return (
       <div className='page-container'>
         <nav id="navbar" title="Toggle menu width">
-          <div className="menu-item" tabIndex="0" data-content="products">
+          <div className="menu-item" tabIndex="0" data-content="products" onClick={e=>this.setState({menuItemSelected: 'products'})}>
             <span className="menu-icon">📦</span>
             <span className="menu-text">Products</span>
           </div>
@@ -22,14 +24,14 @@ export default class App extends React.Component {
             <span className="menu-icon">💰</span>
             <span className="menu-text">Prices</span>
           </div>
-          <div className="menu-item" tabIndex="0" data-content="about">
+          <div className="menu-item" tabIndex="0" data-content="about" onClick={e=>this.setState({menuItemSelected: 'about'})}>
             <span className="menu-icon">ℹ️</span>
             <span className="menu-text">About</span>
           </div>
         </nav>
 
-          <MueslisPage /> 
-          <AboutPage />    
+        {this.state.menuItemSelected=='products' && <MueslisPage />}
+        {this.state.menuItemSelected=='about' && <AboutPage />}   
       </div>
     )
   }

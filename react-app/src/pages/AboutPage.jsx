@@ -4,7 +4,7 @@ import '../App.css';
 
 export default class AboutPage extends React.Component {
     render() {
-        return <div>
+        return <div style={{margin: '20px'}}>
             <h1>Super muesli infos</h1>
                 <p>by Kando Corp</p>
                 <p className="about-paragraph">
