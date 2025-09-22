@@ -9,13 +9,19 @@ import './App.css';
 
 export default class App extends React.Component {
   state = {
-    menuItemSelected: 'products'
+    menuItemSelected: 'products',
+    menuExpanded: false
   }
+
+  handleNavEnter = e => this.setState({menuExpanded: true})
+  handleNavLeave = e => this.setState({menuExpanded: false})
 
   render() {
     return (
       <div className='page-container'>
-        <nav id="navbar" title="Toggle menu width">
+        <nav id="navbar" title="Toggle menu width" className={this.state.menuExpanded ? "expanded" : ""}
+          onMouseEnter={this.handleNavEnter} onMouseLeave={this.handleNavLeave}
+        >
           <div className="menu-item" tabIndex="0" data-content="products" onClick={e=>this.setState({menuItemSelected: 'products'})}>
             <span className="menu-icon">📦</span>
             <span className="menu-text">Products</span>
