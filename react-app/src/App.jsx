@@ -12,12 +12,8 @@ import './App.css';
 
 export default class App extends React.Component {
   state = {
-    menuItemSelected: 'products',
-    menuExpanded: false
+    menuItemSelected: 'products'
   }
-
-  handleNavEnter = e => this.setState({menuExpanded: true})
-  handleNavLeave = e => this.setState({menuExpanded: false})
 
   handleSelectMenuItem = menuItem => this.setState({menuItemSelected: menuItem})
 
