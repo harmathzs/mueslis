@@ -1,35 +1,64 @@
+import React from 'react'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default class App extends React.Component {
+  state = {
+    muesliData: null
+  }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  render() {
+    return (
+      <div className='page-container'>
+        <nav id="navbar" title="Toggle menu width">
+          <div className="menu-item" tabIndex="0" data-content="products">
+            <span className="menu-icon">📦</span>
+            <span className="menu-text">Products</span>
+          </div>
+          <div className="menu-item" tabIndex="0" data-content="prices">
+            <span className="menu-icon">💰</span>
+            <span className="menu-text">Prices</span>
+          </div>
+          <div className="menu-item" tabIndex="0" data-content="about">
+            <span className="menu-icon">ℹ️</span>
+            <span className="menu-text">About</span>
+          </div>
+        </nav>
+
+        <main id="content-area">
+          {/* Default content is Products/Prices table */}
+          <h1>My mueslis</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*<tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>*/}
+              {/*JSON.stringify(this.state.muesliData)*/}
+              {/* TODO - this.state.muesliData.result.map() */}
+            </tbody>
+          </table>
+        </main>        
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    )
+  }
+
+  async componentDidMount() {
+    try {
+      let muesliData = await fetch('http://localhost:3333/mueslis')
+      console.log('muesliData', muesliData)
+      muesliData = await muesliData.json()
+      console.log('muesliData', muesliData)
+
+      this.setState({muesliData})
+    } catch(e) {
+      console.warn(e)
+    }
+  }
 }
-
-export default App
