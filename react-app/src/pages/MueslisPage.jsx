@@ -14,26 +14,26 @@ export default class MueslisPage extends React.Component {
             <main id="content-area">
             {/* Default content is Products/Prices table */}
             <h1>My mueslis</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>price</th>
-                </tr>
-                </thead>
-                <tbody>
-                {/*<tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>*/}
-                {/*JSON.stringify(this.state.muesliData)*/}
-                {this.state.muesliData.result.map(muesli=>{
-                    return <tr key={muesli.id}>
-                    <td>{muesli.id}</td>
-                    <td>{muesli.name}</td>
-                    <td>{muesli.price}</td>
+              <div className="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>price</th>
                     </tr>
-                })}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {this.state.muesliData.result.map(muesli=>{
+                        return <tr key={muesli.id}>
+                        <td>{muesli.id}</td>
+                        <td>{muesli.name}</td>
+                        <td>{muesli.price}</td>
+                        </tr>
+                    })}
+                    </tbody>
+                </table>
+              </div>
             </main>             
         </div>
     }
