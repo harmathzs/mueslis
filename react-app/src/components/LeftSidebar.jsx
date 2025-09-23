@@ -15,7 +15,7 @@ export default class LeftSidebar extends React.Component {
   handleAboutClick = e => this.props.onMenuItemSelected('about')
 
     render() {
-        return <nav id="navbar" title="Toggle menu width" className={this.state.menuExpanded ? "expanded" : ""}
+        return <nav id="navbar" title="Switch page to" className={this.state.menuExpanded ? "expanded" : ""}
           onMouseEnter={this.handleNavEnter} onMouseLeave={this.handleNavLeave}
         >
           <div className="menu-item" tabIndex="0" data-content="products" onClick={this.handleProductsClick}>
