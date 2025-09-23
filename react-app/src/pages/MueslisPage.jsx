@@ -13,7 +13,8 @@ export default class MueslisPage extends React.Component {
         return <div>
             <main id="content-area">
             {/* Default content is Products/Prices table */}
-            <h1>My mueslis</h1>
+            <h1>{this.state.muesliData.result.length} mueslis</h1>
+            <p>Scroll down for more!</p>
               <div className="table-wrapper">
                 <table>
                     <thead>
