@@ -8,11 +8,11 @@ export default class LeftSidebar extends React.Component {
     menuExpanded: false
   }
 
-  handleNavEnter = e => this.setState({menuExpanded: true})
-  handleNavLeave = e => this.setState({menuExpanded: false})
+  handleNavEnter = () => this.setState({menuExpanded: true})
+  handleNavLeave = () => this.setState({menuExpanded: false})
 
-  handleProductsClick = e => this.props.onMenuItemSelected('products')
-  handleAboutClick = e => this.props.onMenuItemSelected('about')
+  handleProductsClick = () => this.props.onMenuItemSelected('products')
+  handleAboutClick = () => this.props.onMenuItemSelected('about')
 
     render() {
         return <nav id="navbar" title="Switch page to" className={this.state.menuExpanded ? "expanded" : ""}
