@@ -15,22 +15,24 @@ export default class MueslisPage extends Component {
             <main id="content-area">
                 {/* Default content is Products table */}
                 <h1>My mueslis</h1>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>price</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.muesliData.result.map(muesli=><tr key={muesli.id}>
-                        <td>{muesli.id}</td>
-                        <td>{muesli.name}</td>
-                        <td>{muesli.price}</td>
-                    </tr>)}
-                    </tbody>
-                </table>
+                <div className="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {this.state.muesliData.result.map(muesli=><tr key={muesli.id}>
+                            <td>{muesli.id}</td>
+                            <td>{muesli.name}</td>
+                            <td>{muesli.price}</td>
+                        </tr>)}
+                        </tbody>
+                    </table>
+                </div>
             </main>          
         </div>
       )
