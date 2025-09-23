@@ -29,7 +29,7 @@ export default class MueslisPage extends React.Component {
                         return <tr key={muesli.id}>
                         <td>{muesli.id}</td>
                         <td>{muesli.name}</td>
-                        <td style={{textAlign: 'right'}}>{muesli.price}</td>
+                        <td style={{textAlign: 'right'}}>{muesli.price},- Ft</td>
                         </tr>
                     })}
                     </tbody>
