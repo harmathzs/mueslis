@@ -48,11 +48,27 @@ app.patch('/mueslis', (req, res)=>{
     const newName = 'name' in req.body ? req.body.name : null
     const newPrice = +req.body.price >0 ? +req.body.price : NaN
 
-    conn.query("UPDATE mueslis SET name=?, price=? WHERE id = ?",
-        [newName, newPrice, id],
+    let queryStr = "UPDATE mueslis SET " // TODO HF queryStr megoldás
+
+    const updates = []
+    const values = []
+
+    if (newName) {
+        updates.push("name=?")
+        values.push(newName)
+    }
+    if (newPrice>0) {
+        updates.push("price=?")
+        values.push(+newPrice)
+    }
+    values.push(+id)
+
+    conn.query(`UPDATE mueslis SET ${updates.join(",")} WHERE id = ?`,
+        values,
         (err, result, fields)=>{
             console.log('Update result', result)
-            res.status(200).json({updatedId: id, ...result})
+            if (err) res.status(300).json({err})
+            else res.status(200).json({updatedId: id, newName, newPrice, ...result})
         }
     )
 })
