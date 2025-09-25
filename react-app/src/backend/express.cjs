@@ -31,6 +31,17 @@ app.get('/mueslis', (req, res)=>{
     })
 })
 
+app.post('/mueslis', (req, res)=>{
+    const {name, price} = req.body
+    if (!name || price<1) res.sendStatus(300)
+    
+    conn.query("INSERT INTO mueslis (name, price) VALUES (?, ?)", [name, price], (err, result, fields)=>{
+        const insertId = result?.insertId
+        console.log('insertId', insertId)
+        res.status(201).json({insertId})
+    })
+})
+
 app.get((err, req, res)=>{
     if (err)
         res.status(404).send("<h1>404 Not Found (Hello world :) )</h1>")
