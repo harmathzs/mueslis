@@ -43,6 +43,20 @@ app.post('/mueslis', (req, res)=>{
     })
 })
 
+app.patch('/mueslis', (req, res)=>{
+    const {id} = req.body
+    const newName = 'name' in req.body ? req.body.name : null
+    const newPrice = +req.body.price >0 ? +req.body.price : NaN
+
+    conn.query("UPDATE mueslis SET name=?, price=? WHERE id = ?",
+        [newName, newPrice, id],
+        (err, result, fields)=>{
+            console.log('Update result', result)
+            res.status(200).json({updatedId: id, ...result})
+        }
+    )
+})
+
 app.get((err, req, res)=>{
     if (err)
         res.status(404).send("<h1>404 Not Found (Hello world :) )</h1>")
