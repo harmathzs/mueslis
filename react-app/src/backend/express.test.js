@@ -31,22 +31,54 @@ describe('Mueslis Endpoints', () => {
     });
 
     it('GET /mueslis returns mueslis list', async () => {
+        vi.spyOn(conn, 'query')
+        .mockImplementation((sql, cb) => {
+            // Accepts a function to be used as the mock implementation.
 
+            cb(null, [{ id: 1, name: 'Test Muesli', price: 5.99 }], []);
+        });
+
+        const res = await request(app).get('/mueslis');
+        expect(res.status).toBe(200);
+        expect(res.body.result).toEqual([{ id: 1, name: 'Test Muesli', price: 5.99 }]);
     })
 
     it('POST /mueslis creates with valid data', async () => {
+        const mockInsertId = 2;
+        vi.spyOn(conn, 'query').mockImplementation((sql, values, cb) => {
+            cb(null, { insertId: mockInsertId }, []);
+        });
 
+        const res = await request(app)
+            .post('/mueslis')
+            .send({ name: 'New Muesli', price: 6.99 });
+        expect(res.status).toBe(201);
+        expect(res.body.id).toBe(mockInsertId);
     })
 
     it('POST /mueslis rejects invalid data', async () => {
-
+        const res = await request(app)
+            .post('/mueslis')
+            .send({ name: '', price: 0 });
+        expect(res.status).toBe(300);
     })
 
     it('PATCH /mueslis updates fields', async () => {
+        vi.spyOn(conn, 'query').mockImplementation((sql, values, cb) => {
+            cb(null, { affectedRows: 1 }, []);
+        });
 
+        const res = await request(app)
+            .patch('/mueslis')
+            .send({ id: 1, name: 'Updated Muesli', price: 7.99 });
+        expect(res.status).toBe(200);
+        expect(res.body.updatedId).toBe(1);
     })
 
     it('PATCH /mueslis handles invalid price', async () => {
-
+        const res = await request(app)
+            .patch('/mueslis')
+            .send({ id: 1, price: -1 });
+        expect(res.status).toBe(300);
     })
 })
