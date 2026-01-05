@@ -82,7 +82,9 @@ app.get((err, req, res)=>{
         res.sendStatus(200)
 })
 
+module.exports = { app, conn };  // Export for tests
+
 const port = 3333
 app.listen(port, err=>console.log("Node Express backend server starts; port, err:", port, err))
 
-module.exports = { app, conn };  // Export for tests
+
