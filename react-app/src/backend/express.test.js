@@ -46,7 +46,13 @@ describe('Mueslis Endpoints', () => {
     it('POST /mueslis creates with valid data', async () => {
         const mockInsertId = 2;
         vi.spyOn(conn, 'query').mockImplementation((sql, values, cb) => {
+            // Mock the MySQL conn.query() method
+
             cb(null, { insertId: mockInsertId }, []);
+            // When query() is called, immediately invoke cb() callback with:
+            //    - err: null (success)
+            //    - result: { insertId: 2 } (fake INSERT result)
+            //    - fields: [] (empty metadata)
         });
 
         const res = await request(app)
