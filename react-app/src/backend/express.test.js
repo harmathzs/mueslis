@@ -60,7 +60,7 @@ describe('Mueslis Endpoints', () => {
         const res = await request(app)
             .post('/mueslis')
             .send({ name: '', price: 0 });
-        expect(res.status).toBe(300);
+        expect(res.status).toBe(400);
     })
 
     it('PATCH /mueslis updates fields', async () => {
