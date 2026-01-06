@@ -84,7 +84,8 @@ app.get((err, req, res)=>{
 
 module.exports = { app, conn };  // Export for tests
 
-const port = 3333
-app.listen(port, err=>console.log("Node Express backend server starts; port, err:", port, err))
-
+if (require.main === module) {
+    const port = 3333
+    app.listen(port, err=>console.log("Node Express backend server starts; port, err:", port, err))
+}
 

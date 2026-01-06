@@ -1,3 +1,4 @@
+// npm i --legacy-peer-deps @vitest/coverage-v8 c8
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
 import { app, conn } from './express.cjs';
